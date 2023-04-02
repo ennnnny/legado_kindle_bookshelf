@@ -20,11 +20,11 @@
         }
 
         .main-text {
-            font-size: 1.3rem;
+            font-size: 1.62rem;
         }
 
         #content1 {
-            padding: 0 10px;
+            padding: 0 20px;
             text-align: justify;
             height: 250px;
             overflow: hidden;
@@ -73,8 +73,8 @@
         <div id="content1"></div>
         <div class="chapter-list"></div>
         <div class="menu">
-            <div onclick="jump('/')">书架</div>
-            <div onclick="alert('开发中~~')">设置</div>
+            <div onclick="jump('/book.html')" style="padding-bottom: 30px;">书架</div>
+            <!-- <div onclick="alert('开发中~~')">设置</div> -->
             <div onclick="openChapterList()">目录</div>
             <div onclick="prev()">上一章</div>
             <div onclick="next()">下一章</div>
@@ -94,7 +94,7 @@
     var contentNode = $$('#content1');
 
     var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    var contentHeight = windowHeight;
+    var contentHeight = windowHeight - 55;
     contentNode.setAttribute('style', 'height: ' + contentHeight + 'px;');
 
     var container_rect = contentNode.getBoundingClientRect();
@@ -104,10 +104,10 @@
     document.addEventListener('click', function(event) {
         var x = event.clientX;
         if (x > next_x) {
-            contentNode.scrollTop += contentHeight;
+            contentNode.scrollTop += (contentHeight - 20);
             page()
         } else if (x < prev_x) {
-            contentNode.scrollTop -= contentHeight;
+            contentNode.scrollTop -= (contentHeight - 20);
             page()
         } else {
             if (menu) {

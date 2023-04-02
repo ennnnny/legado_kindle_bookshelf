@@ -6,19 +6,26 @@
     <title>kindle阅读</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <style>
+        body {
+            color: #000000;
+            font-size: 17pt;
+            font-weight: 300;
+            line-height: 1.65;
+            font-family: "Source Sans Pro", Helvetica, sans-serif;
+            line-height: 1;
+	        background: url("./image/bg.jpg") no-repeat center center fixed;
+	        background-size: 100%;
+            overflow-y: hidden;
+        }
+
         #app {
-            font-family: Avenir, Helvetica, Arial, sans-serif;
+            font-family: "Source Sans Pro", Helvetica, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            color: #2c3e50;
+            color: #000000;
             margin: 0;
-            height: 100%
+            height: 90%;
         }
-
-        a {
-            text-decoration: none;
-        }
-
         @font-face {
             font-style: normal;
             font-weight: 400
@@ -30,7 +37,8 @@
             -webkit-box-orient: horizontal;
             -webkit-box-direction: normal;
             -ms-flex-direction: row;
-            flex-direction: row
+            flex-direction: row;
+            -webkit-box-pack: center;
         }
 
         .index-wrapper .navigation-wrapper {
@@ -52,31 +60,8 @@
             -ms-flex-align: end;
             align-items: flex-end
         }
-
-        .index-wrapper .navigation-wrapper .set-url {
-            text-align: center;
-            display: none;
-            margin: 20px;
-        }
-
-        .index-wrapper .navigation-wrapper .set-url input {
-            width: 80%;
-            margin: 20px;
-            background: none;
-            outline: none;
-            border: 1px solid #000000;
-            padding: 10px;
-        }
-
-        .index-wrapper .navigation-wrapper .set-url .done {
-            border: 1px solid #000000;
-            width: 200px;
-            margin: 0 auto;
-            padding: 10px;
-        }
-
         .index-wrapper .navigation-wrapper .navigation-title {
-            font-size: 24px;
+            font-size: 45px;
             font-weight: 500;
         }
 
@@ -88,116 +73,166 @@
             -webkit-box-orient: vertical;
             -webkit-box-direction: normal;
             -ms-flex-direction: column;
-            flex-direction: column
-        }
-
-        .index-wrapper .shelf-wrapper .books-wrapper {
-            overflow: scroll
-        }
-
-        .index-wrapper .shelf-wrapper .books-wrapper .wrapper {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, 380px);
-            -ms-flex-pack: distribute;
-            justify-content: space-around;
-            grid-gap: 10px
-        }
-
-        .index-wrapper .shelf-wrapper .books-wrapper .wrapper .book {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            cursor: pointer;
-            margin-bottom: 18px;
-            padding: 24px 24px;
-            width: 360px;
-            -webkit-box-orient: horizontal;
-            -webkit-box-direction: normal;
-            -ms-flex-direction: row;
-            flex-direction: row;
-            -ms-flex-pack: distribute;
-            justify-content: space-around
-        }
-
-        .index-wrapper .shelf-wrapper .books-wrapper .wrapper .book .cover-img .cover,
-        .index-wrapper .shelf-wrapper .books-wrapper .wrapper .book .cover-img {
-            width: 84px;
-            height: 112px
-        }
-
-        .index-wrapper .shelf-wrapper .books-wrapper .wrapper .book .info {
-            display: -webkit-box;
-            display: -ms-flexbox;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
-            -ms-flex-direction: column;
             flex-direction: column;
-            -ms-flex-pack: distribute;
-            justify-content: space-around;
-            height: 112px;
-            margin-left: 20px;
-            -webkit-box-flex: 1;
-            -ms-flex: 1;
-            flex: 1
+            -webkit-box-align: center;
+            /* margin-top: 30%; */
+            padding-bottom: 0px;
+        }
+        .shelf-wrapper .inner {
+            color: #ffffff;
+			padding: 2em 0 2em 0;
+			margin: 0 auto;
+			max-width: 65em;
+			width: calc(100% - 6em);
+		}
+
+        header.major {
+            width: -moz-max-content;
+            width: -webkit-max-content;
+            width: -ms-max-content;
+            width: max-content;
+            /* margin-bottom: 2em; */
+            line-height: 2em;
         }
 
-        .index-wrapper .shelf-wrapper .books-wrapper .wrapper .book .info .name {
-            width: fit-content;
-            font-size: 22px;
-            font-weight: 700;
-            color: #33373d;
-            word-wrap: break-word;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            text-align: left;
+        header.major > :first-child {
+			margin-bottom: 0;
+			width: calc(100% + 0.5em);
+		}
+
+        header.major > :first-child:after {
+            content: '';
+            background-color: #ffffff;
+            display: block;
+            height: 2px;
+            margin: 0.325em 0 0.5em 0;
+            width: 100%;
         }
 
-        .index-wrapper .shelf-wrapper .books-wrapper .wrapper .book .info .sub {
-            display: -webkit-box;
-            display: -ms-flexbox;
-            -webkit-box-orient: horizontal;
-            -webkit-box-direction: normal;
-            -ms-flex-direction: row;
-            flex-direction: row;
-            font-size: 13px;
-            margin-top: 13px;
+        .inner .content {
+            display: -moz-flex;
+            display: -webkit-flex;
+            display: -ms-flex;
+            display: flex;
+            -moz-align-items: center;
+            -webkit-align-items: center;
+            -ms-align-items: center;
+            align-items: center;
+            margin: 0 0 2em 0;
+            font-size: 13pt;
+        }
+
+        .inner .content > * {
+            margin-right: 1.5em;
+            margin-bottom: 0;
+        }
+
+        .inner .content > :last-child {
+            margin-right: 0;
+        }
+
+        .inner .content p {
+            font-size: 0.7em;
             font-weight: 600;
-            color: #6b6b6b
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
         }
 
-        .index-wrapper .shelf-wrapper .books-wrapper .wrapper .book .info .sub .dot {
-            margin: 0 7px
+        ul.actions {
+            display: -moz-flex;
+            display: -webkit-flex;
+            display: -ms-flex;
+            display: flex;
+            cursor: default;
+            list-style: none;
+            margin-left: -1em;
+            padding-left: 0;
         }
 
-        .index-wrapper .shelf-wrapper .books-wrapper .wrapper .book .info .dur-chapter,
-        .index-wrapper .shelf-wrapper .books-wrapper .wrapper .book .info .intro,
-        .index-wrapper .shelf-wrapper .books-wrapper .wrapper .book .info .last-chapter {
-            color: #6b6b6b;
-            font-size: 13px;
-            margin-top: 13px;
-            font-weight: 500;
-            word-wrap: break-word;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            text-align: left
+		ul.actions li {
+			padding: 0 0 0 1em;
+			vertical-align: middle;
+		}
+
+		ul.actions.special {
+			-moz-justify-content: center;
+			-webkit-justify-content: center;
+			-ms-justify-content: center;
+			justify-content: center;
+			width: 100%;
+			margin-left: 0;
+		}
+
+        ul.actions.special li:first-child {
+            padding-left: 0;
         }
 
-        .index-wrapper .shelf-wrapper .books-wrapper .wrapper:last-child {
-            margin-right: auto
+		ul.actions.stacked {
+			-moz-flex-direction: column;
+			-webkit-flex-direction: column;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			margin-left: 0;
+		}
+
+        ul.actions.stacked li {
+            padding: 1.3em 0 0 0;
         }
 
-        .index-wrapper .shelf-wrapper .books-wrapper::-webkit-scrollbar {
-            width: 0 !important
+        ul.actions.stacked li:first-child {
+            padding-top: 0;
+        }
+
+		ul.actions.fit {
+			width: calc(100% + 1em);
+		}
+
+        ul.actions.fit li {
+            -moz-flex-grow: 1;
+            -webkit-flex-grow: 1;
+            -ms-flex-grow: 1;
+            flex-grow: 1;
+            -moz-flex-shrink: 1;
+            -webkit-flex-shrink: 1;
+            -ms-flex-shrink: 1;
+            flex-shrink: 1;
+            width: 100%;
+        }
+
+        ul.actions.fit li > * {
+            width: 100%;
+        }
+
+        ul.actions.fit.stacked {
+            width: 100%;
+        }
+
+        .button {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            -moz-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+            -webkit-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+            -ms-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+            background-color: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: inset 0 0 0 2px #ffffff;
+            color: #ffffff;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 0.8em;
+            font-weight: 600;
+            height: 3.5em;
+            letter-spacing: 0.25em;
+            line-height: 3.5em;
+            padding: 0 1.75em;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            white-space: nowrap;
         }
 
         @media screen and (max-width: 750px) {
@@ -212,55 +247,42 @@
             .index-wrapper .shelf-wrapper {
                 padding: 0
             }
-
-            .index-wrapper .shelf-wrapper .shelf-title {
-                padding: 20px 24px 0 24px
-            }
-
-            .index-wrapper .shelf-wrapper .books-wrapper .wrapper {
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-                -webkit-box-orient: vertical;
-                -webkit-box-direction: normal;
-                -ms-flex-direction: column;
-                flex-direction: column
-            }
-
-            .index-wrapper .shelf-wrapper .books-wrapper .wrapper .book {
-                box-sizing: border-box;
-                width: 100%;
-                margin-bottom: 0;
-                padding: 10px 20px
-            }
         }
     </style>
 </head>
 
-<body>
+<body scroll="no">
 <div id="app">
     <div class="index-wrapper">
         <div class="navigation-wrapper">
             <div class="navigation-title-wrapper">
-                <div class="navigation-title">阅读</div>
-                <div class="navigation-sub-title" onclick="openSet()">设置链接</div>
-            </div>
-            <div class="set-url">
-                <label>阅读 web 服务链接（设置自己的链接后才能使用） <input type="text" id="url" value=""></label>
-                <div class="done" onclick="setUrl()">确定</div>
+                <div class="navigation-title" onclick="jumpIndex()">阅读</div>
             </div>
         </div>
         <div class="shelf-wrapper">
-            <div class="books-wrapper">
-                <div class="wrapper" id="book_list"></div>
+            <div class="inner">
+                <header class="major">
+                    <h2>昨日邻家乞新火，<br/>晓窗分与读书灯</h2>
+                </header>
+                <div class="content">
+                    <ul class="actions">
+                        <li>
+                            <div class="button next scrolly" onclick="jumpBook()">书架</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<script src="./book.js?v2"></script>
-<script>
-    getList();
-</script>
-</body>
 
+</body>
+<script>
+    function jumpIndex() {
+        window.location.href = "index.html";
+    }
+    function jumpBook() {
+        window.location.href = "book.html";
+    }
+</script>
 </html>
